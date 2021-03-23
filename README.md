@@ -1,4 +1,4 @@
-# vue-test
+# vue-calendar-example
 
 ## Project setup
 ```
