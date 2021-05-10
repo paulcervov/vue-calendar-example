@@ -1,8 +1,10 @@
 <template>
   <div class="calendar">
-      <h1>Календарь</h1>
-      <div class="day">
-
+      <div class="day vh-100 border position-relative">
+          <div class="slot bg-info position-absolute w-100" :style="{
+            top: `${timeDiffInPercent(slot.time_start)}%`,
+            height: `${timeDiffInPercent(slot.time_end) - timeDiffInPercent(slot.time_start)}%`
+          }" v-for="slot in slots">{{ slot.time_start}} {{ slot.time_end}}</div>
       </div>
   </div>
 </template>
@@ -17,38 +19,37 @@ export default {
       slots: [
         {
           time_start: '10:00:00',
-          time_end: '12:30:00',
+          time_end: '11:00:00',
         },
         {
           time_start: '15:00:00',
-          time_end: '17:30:00',
+          time_end: '19:00:00',
         }
       ]
     }
   },
-  mounted() {
-    const timeOpen = this.$moment('08:00:00', 'HH:mm:ss');
-    const timeClose = this.$moment('21:00:00', 'HH:mm:ss');
-
-    const timeDiffInMinutes = timeClose.diff(timeOpen, 'minutes'); // 780
-    const onePercentInMinutes = timeDiffInMinutes / 100; // 78
-
+  computed:{
+    timeOpenMoment(){
+      return this.$moment(this.time_open, 'HH:mm:ss')
+    },
+    timeCloseMoment(){
+      return this.$moment(this.time_close, 'HH:mm:ss')
+    },
+    onePercentInMinutes(){
+      return this.timeCloseMoment.diff(this.timeOpenMoment, 'minutes') / 100
+    }
   },
-  methods:{
-
+  methods: {
+    timeDiffInPercent(time) {
+      const timeDiffInMinutes = this.$moment(time, 'HH:mm:ss').diff(this.timeOpenMoment, 'minutes');
+      return Math.round(timeDiffInMinutes / this.onePercentInMinutes);
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .calendar {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
 
-  .day {
-    background-color: aqua;
-    height: 100%;
-  }
 }
 </style>
