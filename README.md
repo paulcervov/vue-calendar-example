@@ -1,5 +1,9 @@
 # vue-calendar-example
 
+Building typical calendar on Vue and Bootstrap 📅
+
+[Demo](https://paulcervov.github.io/vue-calendar-example) on GitHub Pages.
+
 ## Project setup
 ```
 npm install
@@ -14,11 +18,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
