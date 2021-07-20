@@ -2,7 +2,7 @@
 
 Building typical calendar on Vue and Bootstrap 📅
 
-[Demo](https://paulcervov.github.io/vue-calendar-example) on GitHub Pages.
+[Demo](https://vue-calendar-example.vercel.app) on GitHub Pages.
 
 ## Project setup
 ```
